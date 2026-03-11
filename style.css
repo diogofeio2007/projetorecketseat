@@ -5,8 +5,27 @@
   text-decoration: none;
 }
 
+:root {
+  --text-color: white;
+  --bg-url: url(/assets/bg-mobile.jpg);
+  --stroke-color: rgb(255, 255, 255, 0.5);
+  --surface-color: rgb(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.2);
+  --highlight-hover: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(/assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(/assets/bg-mobile-light.jpg);
+  --stroke-color: rgb(0, 0, 0, 0.5);
+  --surface-color: rgb(0, 0, 0, 0.1);
+  -surface-color-hover: rgb(0, 0, 0, 0.2);
+  --highlight-hover: rgba(0, 0, 0, 0.2);
+  --switch-bg-url: url(/assets/sun.svg);
+}
 body {
-  background-image: url(/assets/bg-mobile.jpg);
+  background-image: var(--bg-url);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -14,33 +33,70 @@ body {
 
 body * {
   font-family: "Inter", sans-serif;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 #container {
-  width: 360px;
+  width: 450px;
   margin: 56px auto 0;
   /*border: 2px solid red;*/
 }
 
 #profile {
   text-align: center;
-  padding: 24px 124px;
+  justify-content: center;
+  padding: 24px 100px;
 }
 
 #profile img {
-  width: 114px;
+  width: 160px;
 }
 
 #profile p {
   font-weight: 500;
-  font-size: 16px;
+  font-size: 26px;
   line-height: 24px;
   padding: 8px 0 24px 0;
 }
 
-/* LISTA COM LINKS*/
+/* switch light mode / dark mode*/
 
+#switch {
+  width: 64px;
+  position: relative;
+  margin: 8px auto;
+
+}
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center/24px;
+  border-radius: 50%;
+  border: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.light #switch button {
+  right: 0;
+  left: initial;
+}
+
+#switch span {
+  display: block;
+  width: 64px;
+  height: 24px;
+  background-color: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  --webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/* LISTA COM LINKS*/
 ul {
   list-style: none;
   display: flex;
@@ -49,14 +105,14 @@ ul {
   gap: 16px;
 }
 
-ul li a{
+ul li a {
   display: flex;
   justify-content: center;
   padding: 16px 24px;
-  font-weight:500;
-  font-size: 18px;
-  background: rgb(255, 255, 255, 0.1);
-  border: 2px solid rgb(255, 255, 255, 0.5);
+  font-weight: 500;
+  font-size: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
   border-radius: 8px;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -65,28 +121,34 @@ ul li a{
 
 ul li a:hover {
   font-weight: 700;
-  background: rgb(255, 255, 255, 0.5);
-  border: 3px solid rgb(255, 255, 255);
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
 }
 
 #social-links {
   display: flex;
   justify-content: center;
   gap: 50px;
-  
-  padding: 24px 0;
-  font-size: 24px;
+
+  padding: 5px 0;
+  font-size: 30px;
 }
 
 #social-links a {
-display: flex;
-justify-content: center;
-align-items: center;
-transition: background 0.4s;
-border-radius: 50%;
-padding: 16px;
+  display: flex;
+  align-items: center;
+  transition: background 0.4s;
+  border-radius: 50%;
+  padding: 16px;
 }
 
 #social-links a:hover {
-  background: rgb(255, 255, 255, 0.5);
+  background: var(--highlight-hover);
+}
+
+footer {
+  padding: 24px 0;
+  text-align: center;
+  justify-content: center;
+  font-size: 17px;
 }
